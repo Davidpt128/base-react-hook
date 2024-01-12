@@ -24,7 +24,6 @@ const InputOTP = (props) => {
                     <button className='btn btn-primary me-5' onClick={() => { props.setInputOtp("") }}>Clear</button>
                     <button className='btn btn-primary' disabled={isDisable} onClick={props.handleSubmit}>Confirm</button>
                 </div>
-
             </div>
 
         </div>
