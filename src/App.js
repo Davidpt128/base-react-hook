@@ -4,17 +4,21 @@ import NavbarComponent from "./components/NavbarComponent";
 import Home from "./pages/Home";
 import Weather from "./pages/Weather";
 import OTP from "./pages/OTP";
+import WeatherDetail from "./pages/WeatherDetail";
 
 function App() {
   return (
     <Router>
       <NavbarComponent />
       <Switch>
-        <Route path="/weather">
+        <Route path="/weather" exact>
           <Weather />
         </Route>
         <Route path="/otp">
           <OTP />
+        </Route>
+        <Route path="/weather/:locationName">
+          <WeatherDetail />
         </Route>
         <Route path="/" exact>
           <Home />
