@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Search from '../components/Search';
-import Background from '../img/BanffGlow.jpg'
+import Background from '../assets/img/bgWeatherApp.jpg'
+import CitiesList from '../assets/data/cities_list.json'
 import WeatherItem from '../components/WeatherItem';
 import { useHistory } from 'react-router-dom';
 
@@ -28,19 +29,15 @@ const Weather = () => {
     }
 
     useEffect(() => {
-        async function fetchData() {
-            let responseCity = await axios.get("/data/cities_list.json")
-            const cities = []
-            responseCity.data.forEach(element => {
-                cities.push({ value: element.name, label: `${element.name}, ${element.country}` })
-            });
-            setOptions(cities)
-        }
-        fetchData()
+        const cities = []
+        CitiesList.forEach(element => {
+            cities.push({ value: element.name, label: `${element.name}, ${element.country}` })
+        });
+        setOptions(cities)
     }, [])
 
     return (
-        <div className='py-5' style={{ backgroundImage: `url(${Background})`, backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize: "cover", minHeight: `calc(100vh - ${navbarHeight})` }}>
+        <div className='py-5' style={{ background: `url(${Background}) no-repeat center/cover`, minHeight: `calc(100vh - ${navbarHeight})` }}>
             <div className='container'>
                 <div className='row justify-content-center py-5'>
                     <div className='col-12 col-md-6 col-lg-4'>
