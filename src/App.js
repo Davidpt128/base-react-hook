@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Weather from "./pages/Weather";
 import OTP from "./pages/OTP";
 import WeatherDetail from "./pages/WeatherDetail";
+import CRUD from "./pages/CRUD/CRUD";
 
 function App() {
   return (
@@ -14,11 +15,14 @@ function App() {
         <Route path="/weather" exact>
           <Weather />
         </Route>
+        <Route path="/weather/:locationName">
+          <WeatherDetail />
+        </Route>
         <Route path="/otp">
           <OTP />
         </Route>
-        <Route path="/weather/:locationName">
-          <WeatherDetail />
+        <Route path="/crud">
+          <CRUD />
         </Route>
         <Route path="/" exact>
           <Home />
