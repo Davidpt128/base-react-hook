@@ -1,5 +1,22 @@
 {
-  "posts": [{ "id": 1, "title": "json-server", "author": "typicode" }],
-  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
-  "profile": { "name": "typicode" }
+  "users": [
+    {
+      "id": 1,
+      "email": "datpham.234234@gmail.com",
+      "username": "david",
+      "createAt": "2024-01-12T06:30:23.000Z"
+    },
+    {
+      "id": 2,
+      "email": "am.5f@gmail.com",
+      "username": "peter",
+      "createAt": "2024-01-12T06:30:23.000Z"
+    },
+    {
+      "id": 3,
+      "email": "phasam.2s34@gmail.com",
+      "username": "henry",
+      "createAt": "2024-01-12T06:30:23.000Z"
+    }
+  ]
 }

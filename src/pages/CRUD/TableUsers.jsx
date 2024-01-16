@@ -1,6 +1,17 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 const TableUsers = () => {
+    const [listUsers, setListUsers] = useState([])
+    useEffect(() => {
+        async function fetchData() {
+            let response = await axios.get("http://localhost:4000/users")
+            setListUsers(response.data)
+        }
+        fetchData()
+    }, [])
+
+
     return (
         <table className="table table-striped">
             <thead>
@@ -12,15 +23,19 @@ const TableUsers = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>
-                        <button className='btn btn-warning me-3'>Edit</button>
-                        <button className='btn btn-danger'>Delete</button>
-                    </td>
-                </tr>
+                {listUsers?.map((user, index) => {
+                    return (
+                        <tr key={user.id}>
+                            <th scope="row">{index + 1}</th>
+                            <td>{user.email}</td>
+                            <td>{user.username}</td>
+                            <td>
+                                <button className='btn btn-warning me-3'>Edit</button>
+                                <button className='btn btn-danger'>Delete</button>
+                            </td>
+                        </tr>
+                    )
+                })}
             </tbody>
         </table>
 
