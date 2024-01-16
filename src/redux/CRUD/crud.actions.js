@@ -9,6 +9,9 @@ import {
   DELETE_USER_ERROR,
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_REQUEST,
 } from "./crud.types";
 
 export const fetchAllUsers = () => {
@@ -98,5 +101,35 @@ export const deleteUserSuccess = () => {
 export const deleteUserError = () => {
   return {
     type: DELETE_USER_ERROR,
+  };
+};
+
+export const updateUser = (user) => {
+  return async (dispatch, getState) => {
+    dispatch(updateUserRequest());
+    try {
+      await axios.put(`http://localhost:4000/users/${user.id}`, user);
+      dispatch(updateUserSuccess());
+      dispatch(fetchAllUsers());
+    } catch (error) {
+      console.log(error);
+      dispatch(updateUserError());
+    }
+  };
+};
+
+export const updateUserRequest = () => {
+  return {
+    type: UPDATE_USER_REQUEST,
+  };
+};
+export const updateUserSuccess = () => {
+  return {
+    type: UPDATE_USER_SUCCESS,
+  };
+};
+export const updateUserError = () => {
+  return {
+    type: UPDATE_USER_ERROR,
   };
 };

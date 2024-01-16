@@ -8,6 +8,9 @@ import {
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
   DELETE_USER_ERROR,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
 } from "./crud.types";
 
 const INITIAL_STATE = {
@@ -16,6 +19,7 @@ const INITIAL_STATE = {
   isError: false,
   isCreating: false,
   isDeleting: false,
+  isUpdating: false,
 };
 
 const crudReducer = (state = INITIAL_STATE, action) => {
@@ -65,6 +69,18 @@ const crudReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isDeleting: false,
+      };
+    case UPDATE_USER_REQUEST:
+      return {
+        ...state,
+        isUpdating: true,
+      };
+
+    case UPDATE_USER_SUCCESS:
+    case UPDATE_USER_ERROR:
+      return {
+        ...state,
+        isUpdating: false,
       };
 
     default:
