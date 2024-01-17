@@ -9,6 +9,7 @@ const NavbarComponent = () => {
                     <NavLink className="nav-link" to="/" exact>Home</NavLink>
                     <NavLink className="nav-link" to="/weather">Weather App</NavLink>
                     <NavLink className="nav-link" to="/otp">OTP App</NavLink>
+                    <NavLink className="nav-link" to="/crud">CRUD User</NavLink>
                 </div>
             </div>
         </div>
