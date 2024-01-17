@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import GenerateOTP from '../components/GenerateOTP'
-import InputOTP from '../components/InputOTP'
+import GenerateOTP from './GenerateOTP'
+import InputOTP from './InputOTP'
 
 
 const OTP = () => {

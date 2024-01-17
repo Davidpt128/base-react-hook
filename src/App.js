@@ -1,34 +1,24 @@
 import "./App.scss";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavbarComponent from "./components/NavbarComponent";
-import Home from "./pages/Home";
-import Weather from "./pages/Weather";
-import OTP from "./pages/OTP";
-import WeatherDetail from "./pages/WeatherDetail";
-import CRUD from "./pages/CRUD/CRUD";
+import Home from "./pages/Home/Home.jsx";
+import Weather from "./pages/Weather/Weather.jsx";
+import OTP from "./pages/OTP/OTP.jsx";
+import WeatherDetail from "./pages/WeatherDetail/WeatherDetail.jsx";
+import CRUD from "./pages/CRUD/CRUD.jsx";
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <NavbarComponent />
-      <Switch>
-        <Route path="/weather" exact>
-          <Weather />
-        </Route>
-        <Route path="/weather/:locationName">
-          <WeatherDetail />
-        </Route>
-        <Route path="/otp">
-          <OTP />
-        </Route>
-        <Route path="/crud">
-          <CRUD />
-        </Route>
-        <Route path="/" exact>
-          <Home />
-        </Route>
-      </Switch>
-    </Router>
+      <Routes>
+        <Route path="/weather" element={<Weather />} />
+        <Route path="/weather/:locationName" element={<WeatherDetail />} />
+        <Route path="/otp" element={<OTP />} />
+        <Route path="/crud" element={<CRUD />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

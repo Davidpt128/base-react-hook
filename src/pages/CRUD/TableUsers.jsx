@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteUser, fetchAllUsers, updateUser } from '../../redux/CRUD/crud.actions'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { fetchAllUsers, deleteUser, updateUser } from '../../redux/CRUD/crudSlice';
 
 const TableUsers = () => {
     const dispatch = useDispatch()
@@ -15,7 +15,7 @@ const TableUsers = () => {
 
     useEffect(() => {
         dispatch(fetchAllUsers())
-    }, [])
+    }, [dispatch])
 
     const handleOpenEdit = (user) => {
         setShowEdit(true)

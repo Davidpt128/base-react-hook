@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import Search from '../components/Search';
-import Background from '../assets/img/bgWeatherApp.jpg'
-import CitiesList from '../assets/data/cities_list.json'
-import WeatherItem from '../components/WeatherItem';
-import { useHistory } from 'react-router-dom';
+import Background from '../../assets/img/bgWeatherApp.jpg'
+import CitiesList from '../../assets/data/cities_list.json'
+import WeatherItem from './WeatherItem';
+import { useNavigate } from 'react-router-dom';
+import Select from 'react-select';
 
 
 const Weather = () => {
@@ -13,7 +13,7 @@ const Weather = () => {
     const [options, setOptions] = useState([])
     const [displayWeather, setDisplayWeather] = useState({})
     const [isLoading, setIsLoading] = useState(false)
-    let history = useHistory()
+    let navigate = useNavigate()
 
     const handleSearchBtn = async (valueSearch) => {
         setIsLoading(true)
@@ -21,11 +21,11 @@ const Weather = () => {
         setIsLoading(false)
         setValueSearch(valueSearch)
         setDisplayWeather(response.data)
-        history.push("/weather")
+        navigate("/weather")
     }
 
     const handleClickDetail = () => {
-        if (valueSearch.value) history.push(`/weather/${valueSearch.value}`);
+        if (valueSearch.value) navigate(`/weather/${valueSearch.value}`);
     }
 
     useEffect(() => {
@@ -41,7 +41,9 @@ const Weather = () => {
             <div className='container'>
                 <div className='row justify-content-center py-5'>
                     <div className='col-12 col-md-6 col-lg-4'>
-                        <Search valueSearch={valueSearch} handleSearchBtn={handleSearchBtn} options={options} />
+                        <Select defaultValue={valueSearch}
+                            onChange={handleSearchBtn}
+                            options={options} />
                     </div>
                     <div className="col-12 col-md-6 col-lg-4 card shadow-0 border bg-transparent text-light">
                         {isLoading

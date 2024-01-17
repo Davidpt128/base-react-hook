@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Line } from 'react-chartjs-2'
 import zoomPlugin from 'chartjs-plugin-zoom';
 import {
@@ -27,7 +27,7 @@ ChartJS.register(
 );
 
 const WeatherDetail = () => {
-    let history = useHistory()
+    let navigate = useNavigate()
     const { locationName } = useParams()
     const [labels, setLabels] = useState([])
     const [temps, setTemps] = useState([])
@@ -72,7 +72,7 @@ const WeatherDetail = () => {
     };
 
     const handleBack = () => {
-        history.goBack()
+        navigate(-1)
     }
 
     useEffect(() => {
@@ -86,7 +86,7 @@ const WeatherDetail = () => {
             setTemps(temps)
         }
         fetchData()
-    }, [])
+    }, [locationName])
 
     return (
         <div className='container py-5'>
