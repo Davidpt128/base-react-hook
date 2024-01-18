@@ -61,8 +61,8 @@ const TableUsers = () => {
                                         <td>{user.email}</td>
                                         <td>{user.username}</td>
                                         <td>
-                                            <button className='btn btn-warning me-3' onClick={() => handleOpenEdit(user)}>Edit</button>
-                                            <button className='btn btn-danger' onClick={() => handleDelete(user.id)} disabled={isDeleting}>Delete</button>
+                                            <button className='btn btn-warning me-3 mb-sm-0 mb-2' onClick={() => handleOpenEdit(user)}>Edit</button>
+                                            <button className='btn btn-danger mb-sm-0 mb-2' onClick={() => handleDelete(user.id)} disabled={isDeleting}>Delete</button>
 
                                         </td>
                                     </tr>
