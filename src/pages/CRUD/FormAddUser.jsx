@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createNewUser } from '../../redux/CRUD/crudSlice'
+import { createNewUser } from '../../redux/slice/crudSlice'
 
 const FormAddUser = () => {
     const dispatch = useDispatch()
