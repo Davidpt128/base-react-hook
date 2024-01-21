@@ -1,9 +1,27 @@
 import React from 'react';
 import OtpInput from 'react-otp-input';
 import CountDown from './CountDown';
+import { useDispatch, useSelector } from 'react-redux';
+import { clickBtnClear, enterInput } from '../../redux/slice/otpSlice';
 
-const InputOTP = (props) => {
-    let { inputOtp, numInputs, isPlaying, keyCountDown, isDisableClear, isDisableConfirm, handleInput, handleTimeOut, handleClear, handleSubmit } = props
+const InputOTP = () => {
+    const dispatch = useDispatch()
+    const orgOtp = useSelector(state => state.otp.orgOtp)
+    const inputOtp = useSelector(state => state.otp.inputOtp)
+    const numInputs = useSelector(state => state.otp.numInputs)
+    const isDisableClear = useSelector(state => state.otp.isDisableClear)
+    const isDisableConfirm = useSelector(state => state.otp.isDisableConfirm)
+
+    const handleInput = (input) => {
+        dispatch(enterInput(input))
+    }
+    const handleClear = () => {
+        dispatch(clickBtnClear())
+    }
+    const handleSubmit = () => {
+        (+inputOtp !== +orgOtp) ? alert("Wrong OTP ~~") : alert("Correct OTP ^^")
+    }
+
     return (
         <div className='card bg-white mb-5 mt-5 border-0' style={{ boxShadow: "0 12px 15px rgba(0, 0, 0, 0.02)" }}>
             <div className='card-body p-5 text-center'>
@@ -14,11 +32,11 @@ const InputOTP = (props) => {
                     value={inputOtp}
                     onChange={handleInput}
                     numInputs={numInputs}
-                    renderSeparator={<span>-</span>}
+                    renderSeparator={<span>&nbsp;&nbsp;</span>}
                     renderInput={(props) => <input {...props} />}
                 />
                 <div className='timer my-4'>
-                    <CountDown handleTimeOut={handleTimeOut} isPlaying={isPlaying} keyCountDown={keyCountDown} />
+                    <CountDown size={120} duration={20} />
                 </div>
                 <div className='my-3'>
                     <button className='btn btn-primary me-5' disabled={isDisableClear} onClick={handleClear}>Clear</button>

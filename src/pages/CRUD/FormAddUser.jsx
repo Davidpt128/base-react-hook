@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createNewUser } from '../../redux/CRUD/crud.actions'
+import { createNewUser } from '../../redux/slice/crudSlice'
 
 const FormAddUser = () => {
     const dispatch = useDispatch()
@@ -21,7 +21,7 @@ const FormAddUser = () => {
         <form onSubmit={handleSubmit} ref={ref}>
             <div className="mb-3">
                 <label htmlFor="email" className="form-label">Email</label>
-                <input type="email" className="form-control" id="email" required />
+                <input type="email" className="form-control" id="email" required autoComplete='off' />
             </div>
             <div className="mb-3">
                 <label htmlFor="password" className="form-label">Password</label>
@@ -29,7 +29,7 @@ const FormAddUser = () => {
             </div>
             <div className="mb-3">
                 <label htmlFor="username" className="form-label">Username</label>
-                <input type="text" className="form-control" id='username' required />
+                <input type="text" className="form-control" id='username' required autoComplete='off' />
             </div>
             <button type="submit" className="btn btn-primary" disabled={isCreating}>Create</button>
         </form>

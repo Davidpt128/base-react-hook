@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteUser, fetchAllUsers, updateUser } from '../../redux/CRUD/crud.actions'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { fetchAllUsers, deleteUser, updateUser } from '../../redux/slice/crudSlice';
 
 const TableUsers = () => {
     const dispatch = useDispatch()
@@ -15,7 +15,7 @@ const TableUsers = () => {
 
     useEffect(() => {
         dispatch(fetchAllUsers())
-    }, [])
+    }, [dispatch])
 
     const handleOpenEdit = (user) => {
         setShowEdit(true)
@@ -61,8 +61,8 @@ const TableUsers = () => {
                                         <td>{user.email}</td>
                                         <td>{user.username}</td>
                                         <td>
-                                            <button className='btn btn-warning me-3' onClick={() => handleOpenEdit(user)}>Edit</button>
-                                            <button className='btn btn-danger' onClick={() => handleDelete(user.id)} disabled={isDeleting}>Delete</button>
+                                            <button className='btn btn-warning me-3 mb-sm-0 mb-2' onClick={() => handleOpenEdit(user)}>Edit</button>
+                                            <button className='btn btn-danger mb-sm-0 mb-2' onClick={() => handleDelete(user.id)} disabled={isDeleting}>Delete</button>
 
                                         </td>
                                     </tr>

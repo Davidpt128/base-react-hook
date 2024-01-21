@@ -1,12 +1,14 @@
-import { createStore, applyMiddleware } from "redux";
-import { composeWithDevTools } from "@redux-devtools/extension";
-import { thunk } from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit";
+import crudReducer from "./slice/crudSlice";
+import otpReducer from "./slice/otpSlice";
+import weatherReducer from "./slice/weatherSlice";
 
-import rootReducer from "./rootReducer";
-
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
-);
+const store = configureStore({
+  reducer: {
+    crud: crudReducer,
+    otp: otpReducer,
+    weather: weatherReducer,
+  },
+});
 
 export default store;

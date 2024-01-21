@@ -1,10 +1,19 @@
 import React from 'react'
 import moment from 'moment'
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-const WeatherItem = (props) => {
-    let { displayWeather, handleClickDetail } = props
+const WeatherItem = () => {
+    let navigate = useNavigate()
+    const displayWeather = useSelector(state => state.weather.displayWeather)
+    const citySelected = useSelector(state => state.weather.citySelected)
+    const handleClickDetail = () => {
+        if (citySelected.value) navigate(`/weather/${citySelected.value}`);
+    }
+
     let dateInZone = new Date();
     dateInZone.setSeconds(dateInZone.getSeconds() + new Date().getTimezoneOffset() * 60 + displayWeather?.timezone);
+
     return (
         <div className="card-body p-4">
             <p>{moment(dateInZone).format("HH:mm")}</p>
